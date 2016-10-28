@@ -1,0 +1,11 @@
+{
+    "id": "news",
+    "name": "News",
+    "description": "News Module.",
+    "keywords": ["news", "tinnhanh", "communication"],
+    "version": "0.9.2",
+    "humhub": {
+        "minVersion": "1.0"
+    },
+    "screenshots": ["assets/screen1.jpg"]
+}

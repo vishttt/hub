@@ -1,0 +1,312 @@
+2016-10-27 14:36:18 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "mail/mail/get-new-message-count-json".' in /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php:460
+Stack trace:
+#0 /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('mail/mail/get-n...', Array)
+#1 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#2 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Không tìm thấy trang.' in /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php:99
+Stack trace:
+#0 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#1 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#2 {main}
+2016-10-27 14:36:18 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][info][application] $_GET = [
+    'r' => 'mail/mail/get-new-message-count-json'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'HTTP_ACCEPT' => 'application/json, text/javascript, */*; q=0.01'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_X_CSRF_TOKEN' => 'Y1ZyWXNoWTEXGzhtRCUBQBZvCilAJwFCNRkLPQJaLAcUAiBvCxoNSQ=='
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_REFERER' => 'http://localhost/humhub/index.php?r=dashboard%2Fdashboard'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; pm_new-spaces-panel=expanded; pm_spaces-statistics-panel=expanded; base_language_id=1; adminToken=g3DOWo9uzugUq4X3pyRIqiM4pA73b3N3; _csrf=433f107af794a3760bac7d8053ba503b1b38161dc569d211633b902fd7bf10a2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22tMJ47MXqu9xp3OXsVOydq2u6wTR6xrTx%22%3B%7D; PHPSESSID=qcf9d3vnmd21r0bhmoebirnr62; _identity=e9552cf86b1756cdd06272704b977325eed6bade5464ca7598bdab72e4a09054a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%2284eccb4a-da0e-409b-8fe4-e3892700f0b0%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/humhub/index.php'
+    'REMOTE_PORT' => '34289'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=mail%2Fmail%2Fget-new-message-count-json'
+    'REQUEST_URI' => '/humhub/index.php?r=mail%2Fmail%2Fget-new-message-count-json'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1477553778.348
+    'REQUEST_TIME' => 1477553778
+]
+2016-10-27 14:36:18 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][error][yii\web\HttpException:404] exception 'yii\base\InvalidRouteException' with message 'Unable to resolve the request "mail/mail/get-new-message-count-json".' in /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php:460
+Stack trace:
+#0 /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('mail/mail/get-n...', Array)
+#1 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#2 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#3 {main}
+
+Next exception 'yii\web\NotFoundHttpException' with message 'Không tìm thấy trang.' in /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php:99
+Stack trace:
+#0 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#1 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#2 {main}
+2016-10-27 14:36:18 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][info][application] $_GET = [
+    'r' => 'mail/mail/get-new-message-count-json'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'HTTP_ACCEPT' => 'application/json, text/javascript, */*; q=0.01'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_X_CSRF_TOKEN' => 'Y1ZyWXNoWTEXGzhtRCUBQBZvCilAJwFCNRkLPQJaLAcUAiBvCxoNSQ=='
+    'HTTP_X_REQUESTED_WITH' => 'XMLHttpRequest'
+    'HTTP_REFERER' => 'http://localhost/humhub/index.php?r=dashboard%2Fdashboard'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; pm_new-spaces-panel=expanded; pm_spaces-statistics-panel=expanded; base_language_id=1; adminToken=g3DOWo9uzugUq4X3pyRIqiM4pA73b3N3; _csrf=433f107af794a3760bac7d8053ba503b1b38161dc569d211633b902fd7bf10a2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22tMJ47MXqu9xp3OXsVOydq2u6wTR6xrTx%22%3B%7D; PHPSESSID=qcf9d3vnmd21r0bhmoebirnr62; _identity=e9552cf86b1756cdd06272704b977325eed6bade5464ca7598bdab72e4a09054a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%2284eccb4a-da0e-409b-8fe4-e3892700f0b0%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/humhub/index.php'
+    'REMOTE_PORT' => '34288'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=mail%2Fmail%2Fget-new-message-count-json'
+    'REQUEST_URI' => '/humhub/index.php?r=mail%2Fmail%2Fget-new-message-count-json'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1477553778.347
+    'REQUEST_TIME' => 1477553778
+]
+2016-10-27 14:55:50 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][error][yii\base\ErrorException:64] exception 'yii\base\ErrorException' with message 'Cannot redeclare class humhub\modules\mail\widgets\Notifications' in /var/www/html/humhub/protected/modules/news/widgets/Notifications.php:0
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-10-27 14:55:50 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][info][application] $_GET = [
+    'r' => 'dashboard/dashboard'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/humhub/index.php?r=mail%2Fmail%2Findex'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; pm_new-spaces-panel=expanded; pm_spaces-statistics-panel=expanded; base_language_id=1; adminToken=g3DOWo9uzugUq4X3pyRIqiM4pA73b3N3; _csrf=433f107af794a3760bac7d8053ba503b1b38161dc569d211633b902fd7bf10a2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22tMJ47MXqu9xp3OXsVOydq2u6wTR6xrTx%22%3B%7D; PHPSESSID=qcf9d3vnmd21r0bhmoebirnr62; _identity=e9552cf86b1756cdd06272704b977325eed6bade5464ca7598bdab72e4a09054a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%2284eccb4a-da0e-409b-8fe4-e3892700f0b0%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/humhub/index.php'
+    'REMOTE_PORT' => '34854'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=dashboard%2Fdashboard'
+    'REQUEST_URI' => '/humhub/index.php?r=dashboard%2Fdashboard'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1477554950.75
+    'REQUEST_TIME' => 1477554950
+]
+2016-10-27 14:56:40 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'humhub\modules\news\models\UserMessage' in file: /var/www/html/humhub/protected/modules/news/models/UserMessage.php. Namespace missing?' in /var/www/html/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('humhub\modules\...')
+#1 /var/www/html/humhub/protected/modules/news/widgets/Notifications.php(21): spl_autoload_call('humhub\modules\...')
+#2 /var/www/html/humhub/protected/humhub/components/Widget.php(70): humhub\modules\news\widgets\Notifications->run()
+#3 /var/www/html/humhub/protected/humhub/components/Widget.php(52): humhub\components\Widget->process()
+#4 /var/www/html/humhub/protected/humhub/widgets/BaseStack.php(92): humhub\components\Widget::widget(Array)
+#5 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Widget.php(102): humhub\widgets\BaseStack->run()
+#6 /var/www/html/humhub/protected/humhub/views/layouts/main.php(101): yii\base\Widget::widget(Array)
+#7 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/var/www/html/h...')
+#8 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/var/www/html/h...', Array)
+#9 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(393): yii\base\View->renderFile('/var/www/html/h...', Array, Object(humhub\modules\dashboard\controllers\DashboardController))
+#10 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(379): yii\base\Controller->renderContent('<div class="con...')
+#11 /var/www/html/humhub/protected/humhub/modules/dashboard/controllers/DashboardController.php(64): yii\base\Controller->render('index', Array)
+#12 [internal function]: humhub\modules\dashboard\controllers\DashboardController->actionIndex()
+#13 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#14 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#15 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('', Array)
+#16 /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('dashboard/dashb...', Array)
+#17 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#18 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#19 {main}
+2016-10-27 14:56:40 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][info][application] $_GET = [
+    'r' => 'dashboard/dashboard'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/humhub/index.php?r=mail%2Fmail%2Findex'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; pm_new-spaces-panel=expanded; pm_spaces-statistics-panel=expanded; base_language_id=1; adminToken=g3DOWo9uzugUq4X3pyRIqiM4pA73b3N3; _csrf=433f107af794a3760bac7d8053ba503b1b38161dc569d211633b902fd7bf10a2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22tMJ47MXqu9xp3OXsVOydq2u6wTR6xrTx%22%3B%7D; PHPSESSID=qcf9d3vnmd21r0bhmoebirnr62; _identity=e9552cf86b1756cdd06272704b977325eed6bade5464ca7598bdab72e4a09054a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%2284eccb4a-da0e-409b-8fe4-e3892700f0b0%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/humhub/index.php'
+    'REMOTE_PORT' => '34861'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=dashboard%2Fdashboard'
+    'REQUEST_URI' => '/humhub/index.php?r=dashboard%2Fdashboard'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1477555000.957
+    'REQUEST_TIME' => 1477555000
+]
+2016-10-27 15:33:15 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][error][yii\base\UnknownClassException] exception 'yii\base\UnknownClassException' with message 'Unable to find 'humhub\modules\news\controllers\NewsController' in file: /var/www/html/humhub/protected/modules/news/controllers/NewsController.php. Namespace missing?' in /var/www/html/humhub/protected/vendor/yiisoft/yii2/BaseYii.php:291
+Stack trace:
+#0 [internal function]: yii\BaseYii::autoload('humhub\modules\...')
+#1 [internal function]: spl_autoload_call('humhub\modules\...')
+#2 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php(562): class_exists('humhub\modules\...')
+#3 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php(520): yii\base\Module->createControllerByID('news')
+#4 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php(512): yii\base\Module->createController('news/hot')
+#5 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php(448): yii\base\Module->createController('news/news/hot')
+#6 /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('news/news/hot', Array)
+#7 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#8 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#9 {main}
+2016-10-27 15:33:15 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][info][application] $_GET = [
+    'r' => 'news/news/hot'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/humhub/index.php?r=dashboard%2Fdashboard'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; pm_new-spaces-panel=expanded; pm_spaces-statistics-panel=expanded; base_language_id=1; adminToken=g3DOWo9uzugUq4X3pyRIqiM4pA73b3N3; _csrf=433f107af794a3760bac7d8053ba503b1b38161dc569d211633b902fd7bf10a2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22tMJ47MXqu9xp3OXsVOydq2u6wTR6xrTx%22%3B%7D; PHPSESSID=qcf9d3vnmd21r0bhmoebirnr62; _identity=e9552cf86b1756cdd06272704b977325eed6bade5464ca7598bdab72e4a09054a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%2284eccb4a-da0e-409b-8fe4-e3892700f0b0%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/humhub/index.php'
+    'REMOTE_PORT' => '35501'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=news%2Fnews%2Fhot'
+    'REQUEST_URI' => '/humhub/index.php?r=news%2Fnews%2Fhot'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1477557195.788
+    'REQUEST_TIME' => 1477557195
+]
+2016-10-27 15:36:17 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][error][yii\base\ErrorException:8] exception 'yii\base\ErrorException' with message 'Undefined variable: userMessages' in /var/www/html/humhub/protected/modules/news/views/news/index.php:16
+Stack trace:
+#0 /var/www/html/humhub/protected/modules/news/views/news/index.php(16): yii\base\ErrorHandler->handleError(8, 'Undefined varia...', '/var/www/html/h...', 16, Array)
+#1 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/View.php(325): require('/var/www/html/h...')
+#2 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/View.php(247): yii\base\View->renderPhpFile('/var/www/html/h...', Array)
+#3 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/View.php(149): yii\base\View->renderFile('/var/www/html/h...', Array, Object(humhub\modules\news\controllers\NewsController))
+#4 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(378): yii\base\View->render('/news/index', Array, Object(humhub\modules\news\controllers\NewsController))
+#5 /var/www/html/humhub/protected/modules/news/controllers/NewsController.php(39): yii\base\Controller->render('/news/index')
+#6 [internal function]: humhub\modules\news\controllers\NewsController->actionIndex()
+#7 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/InlineAction.php(55): call_user_func_array(Array, Array)
+#8 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Controller.php(154): yii\base\InlineAction->runWithParams(Array)
+#9 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Module.php(454): yii\base\Controller->runAction('index', Array)
+#10 /var/www/html/humhub/protected/vendor/yiisoft/yii2/web/Application.php(87): yii\base\Module->runAction('news/news/index', Array)
+#11 /var/www/html/humhub/protected/vendor/yiisoft/yii2/base/Application.php(375): yii\web\Application->handleRequest(Object(humhub\components\Request))
+#12 /var/www/html/humhub/index.php(25): yii\base\Application->run()
+#13 {main}
+2016-10-27 15:36:17 [127.0.0.1][1][qcf9d3vnmd21r0bhmoebirnr62][info][application] $_GET = [
+    'r' => 'news/news/index'
+]
+
+$_SERVER = [
+    'HTTP_HOST' => 'localhost'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:33.0) Gecko/20100101 Firefox/33.0'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.5'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate'
+    'HTTP_REFERER' => 'http://localhost/humhub/index.php?r=dashboard%2Fdashboard'
+    'HTTP_COOKIE' => 'pm_getting-started-panel=expanded; pm_user-tags-panel=expanded; pm_user-spaces-panel=expanded; pm_new-people-panel=expanded; pm_user-statistics-panel=expanded; pm_space-members-panel=expanded; pm_new-spaces-panel=expanded; pm_spaces-statistics-panel=expanded; base_language_id=1; adminToken=g3DOWo9uzugUq4X3pyRIqiM4pA73b3N3; _csrf=433f107af794a3760bac7d8053ba503b1b38161dc569d211633b902fd7bf10a2a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22tMJ47MXqu9xp3OXsVOydq2u6wTR6xrTx%22%3B%7D; PHPSESSID=qcf9d3vnmd21r0bhmoebirnr62; _identity=e9552cf86b1756cdd06272704b977325eed6bade5464ca7598bdab72e4a09054a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A50%3A%22%5B1%2C%2284eccb4a-da0e-409b-8fe4-e3892700f0b0%22%2C2592000%5D%22%3B%7D'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'PATH' => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.7 (Ubuntu) Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.7 (Ubuntu)'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '127.0.0.1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '127.0.0.1'
+    'DOCUMENT_ROOT' => '/var/www/html'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => '/var/www/html'
+    'SERVER_ADMIN' => 'webmaster@localhost'
+    'SCRIPT_FILENAME' => '/var/www/html/humhub/index.php'
+    'REMOTE_PORT' => '35522'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'r=news%2Fnews%2Findex'
+    'REQUEST_URI' => '/humhub/index.php?r=news%2Fnews%2Findex'
+    'SCRIPT_NAME' => '/humhub/index.php'
+    'PHP_SELF' => '/humhub/index.php'
+    'REQUEST_TIME_FLOAT' => 1477557377.171
+    'REQUEST_TIME' => 1477557377
+]
