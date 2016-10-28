@@ -7,7 +7,10 @@ use yii\helpers\Html;
 use yii\web\HttpException;
 use humhub\components\Controller;
 use humhub\modules\file\models\File;
-use humhub\modules\news\models\UserMessage;
+use humhub\modules\news\models\Category;
+use humhub\modules\news\models\NewsPost;
+use humhub\modules\news\models\forms\CreateNews;
+
 use humhub\modules\User\models\User;
 use humhub\modules\user\widgets\UserPicker;
 
@@ -17,11 +20,9 @@ use humhub\modules\user\widgets\UserPicker;
  * @package humhub.modules.news.controllers
  * @since 0.5
  */
-class NewsController extends Controller
-{
+class NewsController extends Controller {
 
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'acl' => [
                 'class' => \humhub\components\behaviors\AccessControl::className(),
@@ -32,19 +33,64 @@ class NewsController extends Controller
     /**
      * Overview of all messages
      */
-    public function actionIndex()
-    {
-   
+    public function actionIndex() {
+
 
         return $this->render('/news/index');
     }
 
     /**
+     * Creates a new Message
+     * and redirects to it.
+     */
+    public function actionCreate() {
+        $userGuid = Yii::$app->request->get('userGuid');
+        $model = new CreateNews();
+
+        // Preselect user if userGuid is given
+
+
+
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            // Create new Message
+            $news = new NewsPost();
+            $news->title = $model->title;
+            $news->content = $model->content;
+            $news->created_by = Yii::$app->user->id;
+            $news->views=0;
+            
+            $news->save();
+
+            File::attachPrecreated($news, Yii::$app->request->post('fileUploaderHiddenGuidField'));
+
+
+            return $this->htmlRedirect(['index', 'id' => $news->id]);
+        }
+          $categories = \yii\helpers\ArrayHelper::map(Category::find()->all(), 'id', 'name');
+
+        return $this->renderAjax('create', array('model' => $model,'categories'=>$categories));
+    }
+
+    
+    
+    
+    
+    
+    /*
+     * view
+     */
+    
+    public function actionView(){
+                return $this->render('/news/view');
+
+    }
+    
+    /**
      * Overview of all messages
      * Used by MailNotificationWidget to display all recent messages
      */
-    public function actionNotificationList()
-    {
+    public function actionNotificationList() {
         $query = UserMessage::find();
         $query->joinWith('message');
         $query->where(['user_message.user_id' => Yii::$app->user->id]);
@@ -57,8 +103,7 @@ class NewsController extends Controller
     /**
      * Shows a Message Thread
      */
-    public function actionShow()
-    {
+    public function actionShow() {
         // Load Message
         $id = (int) Yii::$app->request->get('id');
         $message = $this->getMessage($id);
@@ -88,14 +133,13 @@ class NewsController extends Controller
                     'replyForm' => $replyForm,
         ]);
     }
-    
-    private function checkMessagePermissions($message)
-    {
+
+    private function checkMessagePermissions($message) {
         if ($message == null) {
             throw new HttpException(404, 'Could not find message!');
         }
-        
-        if(!$message->isParticipant(Yii::$app->user->getIdentity())) {
+
+        if (!$message->isParticipant(Yii::$app->user->getIdentity())) {
             throw new HttpException(403, 'Access denied!');
         }
     }
@@ -105,8 +149,7 @@ class NewsController extends Controller
      *
      * This method invite new people to the conversation.
      */
-    public function actionAddUser()
-    {
+    public function actionAddUser() {
         $id = Yii::$app->request->get('id');
         $message = $this->getMessage($id);
 
@@ -133,32 +176,31 @@ class NewsController extends Controller
 
         return $this->renderAjax('/news/adduser', array('inviteForm' => $inviteForm));
     }
-    
+
     /**
      * Used by user picker, searches user which are allwed messaging permissions
      * for the current user (v1.1).
      * 
      * @return type
      */
-    public function actionSearchUser()
-    {
+    public function actionSearchUser() {
         Yii::$app->response->format = 'json';
         return $this->getUserPickerResult(Yii::$app->request->get('keyword'));
     }
-    
+
     private function getUserPickerResult($keyword) {
         if (version_compare(Yii::$app->version, '1.1', 'lt')) {
             return $this->findUserByFilter($keyword, 10);
-        } else if(Yii::$app->getModule('friendship')->getIsEnabled()) {
+        } else if (Yii::$app->getModule('friendship')->getIsEnabled()) {
             return UserPicker::filter([
-                'keyword' => $keyword,
-                'permission' => new SendMail(),
-                'fillUser' => true
+                        'keyword' => $keyword,
+                        'permission' => new SendMail(),
+                        'fillUser' => true
             ]);
         } else {
             return UserPicker::filter([
-                'keyword' => $keyword,
-                'permission' => new SendMail()
+                        'keyword' => $keyword,
+                        'permission' => new SendMail()
             ]);
         }
     }
@@ -170,27 +212,26 @@ class NewsController extends Controller
      * 
      * @return type
      */
-    public function actionSearchAddUser()
-    {
+    public function actionSearchAddUser() {
         Yii::$app->response->format = 'json';
         $message = $this->getMessage(Yii::$app->request->get('id'));
 
         if ($message == null) {
             throw new HttpException(404, 'Could not find message!');
         }
-             
+
         $result = $this->getUserPickerResult(Yii::$app->request->get('keyword'));
-        
+
         //Disable already participating users
-        foreach($result as $i=>$user) {
-            if($this->isParticipant($message, $user)) {
+        foreach ($result as $i => $user) {
+            if ($this->isParticipant($message, $user)) {
                 $result[$i++]['disabled'] = true;
             }
         }
-        
+
         return $result;
     }
-    
+
     /**
      * Checks if a user (user json representation) is participant of a given
      * message.
@@ -200,8 +241,8 @@ class NewsController extends Controller
      * @return boolean
      */
     private function isParticipant($message, $user) {
-        foreach($message->users as $participant) {
-            if($participant->guid === $user['guid']) {
+        foreach ($message->users as $participant) {
+            if ($participant->guid === $user['guid']) {
                 return true;
             }
         }
@@ -211,8 +252,8 @@ class NewsController extends Controller
     /*
      * @deprecated
      */
-    private function findUserByFilter($keyword, $maxResult)
-    {
+
+    private function findUserByFilter($keyword, $maxResult) {
         $query = User::find()->limit($maxResult)->joinWith('profile');
 
         foreach (explode(" ", $keyword) as $part) {
@@ -239,70 +280,7 @@ class NewsController extends Controller
         return $results;
     }
 
-    /**
-     * Creates a new Message
-     * and redirects to it.
-     */
-    public function actionCreate()
-    {
-        $userGuid = Yii::$app->request->get('userGuid');
-        $model = new CreateMessage();
-        
-        // Preselect user if userGuid is given
-        if ($userGuid != "") {
-            $user = User::findOne(['guid' => $userGuid]);
-            if (isset($user) && (version_compare(Yii::$app->version, '1.1', 'lt') || $user->getPermissionManager()->can(new SendMail()) 
-                    || (!Yii::$app->user->isGuest && Yii::$app->user->isAdmin()))) {
-                $model->recipient = $user->guid;
-            }
-        }
-
-       
-        
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            // Create new Message
-            $message = new Message();
-            $message->title = $model->title;
-            $message->save();
-
-            // Attach Message Entry
-            $messageEntry = new MessageEntry();
-            $messageEntry->message_id = $message->id;
-            $messageEntry->user_id = Yii::$app->user->id;
-            $messageEntry->content = $model->message;
-            $messageEntry->save();
-            File::attachPrecreated($messageEntry, Yii::$app->request->post('fileUploaderHiddenGuidField'));
-
-            // Attach also Recipients
-            foreach ($model->getRecipients() as $recipient) {
-                $userMessage = new UserMessage();
-                $userMessage->message_id = $message->id;
-                $userMessage->user_id = $recipient->id;
-                $userMessage->save();
-            }
-
-            // Inform recipients (We need to add all before)
-            foreach ($model->getRecipients() as $recipient) {
-                try {
-                    $message->notify($recipient);
-                } catch(\Exception $e) {
-                    Yii::error('Could not send notification e-news to: '. $recipient->username.". Error:". $e->getMessage());
-                }
-            }
-
-            // Attach User Message
-            $userMessage = new UserMessage();
-            $userMessage->message_id = $message->id;
-            $userMessage->user_id = Yii::$app->user->id;
-            $userMessage->is_originator = 1;
-            $userMessage->last_viewed = new \yii\db\Expression('NOW()');
-            $userMessage->save();
-
-            return $this->htmlRedirect(['index', 'id' => $message->id]);
-        }
-        
-        return $this->renderAjax('create', array('model' => $model));
-    }
+   
 
     /**
      * Leave Message / Conversation
@@ -310,8 +288,7 @@ class NewsController extends Controller
      * Leave is only possible when at least two people are in the
      * conversation.
      */
-    public function actionLeave()
-    {
+    public function actionLeave() {
         $id = Yii::$app->request->get('id');
         $message = $this->getMessage($id);
 
@@ -331,8 +308,7 @@ class NewsController extends Controller
     /**
      * Edits Entry Id
      */
-    public function actionEditEntry()
-    {
+    public function actionEditEntry() {
         $messageEntryId = (int) Yii::$app->request->get('messageEntryId');
         $entry = MessageEntry::findOne(['id' => $messageEntryId]);
 
@@ -357,8 +333,7 @@ class NewsController extends Controller
      *
      * Users can delete the own message entries.
      */
-    public function actionDeleteEntry()
-    {
+    public function actionDeleteEntry() {
         $this->forcePostRequest();
 
         $messageEntryId = (int) Yii::$app->request->get('messageEntryId');
@@ -381,8 +356,7 @@ class NewsController extends Controller
     /**
      * Returns the number of new messages as JSON
      */
-    public function actionGetNewMessageCountJson()
-    {
+    public function actionGetNewMessageCountJson() {
         Yii::$app->response->format = 'json';
 
         $json = array();
@@ -399,8 +373,7 @@ class NewsController extends Controller
      *
      * @param int $id
      */
-    private function getMessage($id)
-    {
+    private function getMessage($id) {
         $message = Message::findOne(['id' => $id]);
 
         if ($message != null) {
@@ -416,4 +389,5 @@ class NewsController extends Controller
 
         return null;
     }
+
 }
