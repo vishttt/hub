@@ -8,7 +8,10 @@ use yii\helpers\Html;
     <div class="row">
         <h2>Super Simple Bootstrap Responsive Timeline</h2>
 
+        
         <ul class="timeline">
+           <?php                  echo \humhub\modules\news\widgets\Form::widget(['contentContainer' => \Yii::$app->user->getIdentity()]); ?>
+
             <li>
                 <div class="timeline-badge">
                     <a><i class="fa fa-circle" id=""></i></a>

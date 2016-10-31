@@ -3,27 +3,26 @@
 namespace humhub\modules\news\models;
 
 use Yii;
-use humhub\components\ActiveRecord;
-use humhub\models\Setting;
-use humhub\modules\user\models\User;
+use humhub\modules\content\components\ContentActiveRecord;
+use humhub\modules\search\interfaces\Searchable;
+
 
 /**
  * This is the model class for table "news_post".
  *
  * The followings are the available columns in table 'news_post':
  * @property integer $id
- * @property integer $category_id
- * @property string $metatags
- * @property string $title_url
- * @property string $title
- * @property string $content
+ * @property string $message_2trash
+ * @property string $message
+ * @property string $url
  * @property string $created_at
- * @property string $updated_at
- * @property string $images
- * @property string $tags
- * @property integer $view
- * @property integer $parent_id
  * @property integer $created_by
+ * @property string $updated_at
+ * @property integer $updated_by
+ * @property integer $category_id
+ * @property integer $views
+ * @property integer $parent_id
+ * @property integer $primary
  *
  * The followings are the available model relations:
  * @property Category[] $category
@@ -32,8 +31,10 @@ use humhub\modules\user\models\User;
  * @package humhub.modules.news.models
  * @since 0.5
  */
-class NewsPost extends ActiveRecord
+class NewsPost extends ContentActiveRecord implements Searchable
 {
+
+        public $wallEntryClass = "humhub\modules\post\widgets\WallEntry";
 
     /**
      * @return string the associated database table name
@@ -51,68 +52,84 @@ class NewsPost extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array(['created_by'], 'integer'),
-            array(['title'], 'string', 'max' => 255),
-            array(['created_at', 'updated_at'], 'safe'),
+                  [['message'], 'required'],
+            [['message'], 'string'],
+            [['created_at', 'updated_at'], 'safe'],
+            [['created_by', 'updated_by'], 'integer'],
+            [['url'], 'string', 'max' => 255]
         );
+    }
+public function beforeSave($insert)
+    {
+        // Prebuild Previews for URLs in Message
+        \humhub\models\UrlOembed::preload($this->message);
+
+        // Check if Post Contains an Url
+        if (preg_match('/http(.*?)(\s|$)/i', $this->message)) {
+            // Set Filter Flag
+            $this->url = 1;
+        }
+
+        return parent::beforeSave($insert);
     }
 
     /**
-     * @return array relational rules.
+     * @inheritdoc
      */
-    public function relations()
+    public function afterSave($insert, $changedAttributes)
     {
-        // NOTE: you may need to adjust the relation name and the related
-        // class name for the relations automatically generated below.
-        return array(
-            'entries' => array(self::HAS_MANY, 'NewsPost', 'parent_id', 'order' => 'created_at ASC'),
-            'users' => array(self::MANY_MANY, 'User', 'user_message(message_id, user_id)'),
-            'originator' => array(self::BELONGS_TO, 'User', 'created_by'),
+
+        parent::afterSave($insert, $changedAttributes);
+
+        // Handle mentioned users
+        \humhub\modules\user\models\Mentioning::parse($this, $this->message);
+
+        return true;
+    }
+
+ public function getContentName()
+    {
+        return Yii::t('PostModule.models_Post', 'post');
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContentDescription()
+    {
+        return $this->message;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getSearchAttributes()
+    {
+        $attributes = array(
+            'message' => $this->message,
+            'url' => $this->url,
         );
+
+        $this->trigger(self::EVENT_SEARCH_ADD, new \humhub\modules\search\events\SearchAddEvent($attributes));
+
+        return $attributes;
     }
 
-    public function getEntries()
-    {
-        $query = $this->hasMany(NewsPost::className(), ['parent_id' => 'id']);
-        $query->addOrderBy(['created_at' => SORT_ASC]);
-        return $query;
-    }
-
-    public function getUsers()
-    {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])
-                        ->viaTable('user_message', ['message_id' => 'id']);
-    }
-
-    public function isParticipant($user)
-    {
-        foreach ($this->users as $participant) {
-            if ($participant->guid === $user->guid) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function getOriginator()
-    {
-        return $this->hasOne(User::className(), ['id' => 'created_by']);
-    }
 
     /**
      * @return array customized attribute labels (name=>label)
      */
-    public function attributeLabels()
+   public function attributeLabels()
     {
-        return array(
+        return [
             'id' => 'ID',
-            'category_id'=>Yii::t('Newsmodule.base','Category'),
-            
-            'title' => Yii::t('MailModule.base', 'Title'),
-            'created_at' => Yii::t('MailModule.base', 'Created At'),
-            'created_by' => Yii::t('MailModule.base', 'Created By'),
-            'updated_at' => Yii::t('MailModule.base', 'Updated At'),
-        );
+            'message' => 'Message',
+            'url' => 'Url',
+            'created_at' => 'Created At',
+            'created_by' => 'Created By',
+            'updated_at' => 'Updated At',
+            'updated_by' => 'Updated By',
+        ];
     }
 
    

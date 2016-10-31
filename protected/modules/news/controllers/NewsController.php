@@ -10,6 +10,7 @@ use humhub\modules\file\models\File;
 use humhub\modules\news\models\Category;
 use humhub\modules\news\models\NewsPost;
 use humhub\modules\news\models\forms\CreateNews;
+use \humhub\modules\post\models\Post;
 
 use humhub\modules\User\models\User;
 use humhub\modules\user\widgets\UserPicker;
@@ -75,7 +76,20 @@ class NewsController extends Controller {
     
     
     
-    
+     public function actionPost()
+    {
+        // Check createPost Permission
+     
+
+        $post = new NewsPost();
+        $post->content = \Yii::$app->request->post('content');
+
+        
+         
+         
+
+        return \humhub\modules\content\widgets\WallCreateContentForm::create($post, $this->contentContainer);
+    }
     
     /*
      * view
