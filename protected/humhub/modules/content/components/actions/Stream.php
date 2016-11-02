@@ -255,6 +255,7 @@ class Stream extends \yii\base\Action
             }
 
             $underlyingObject->populateRelation('content', $wallEntry->content);
+            
 
             $output .= $this->controller->renderAjax('@humhub/modules/content/views/layouts/wallEntry', [
                 'entry' => $wallEntry,

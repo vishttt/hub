@@ -87,6 +87,7 @@ class Activity extends ContentActiveRecord
      */
     public function getWallOut($params = [])
     {
+        
         $cacheKey = 'activity_wall_out_' . Yii::$app->language . '_' . $this->id;
         $output = Yii::$app->cache->get($cacheKey);
 

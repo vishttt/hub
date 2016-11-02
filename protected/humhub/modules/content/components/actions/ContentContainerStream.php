@@ -31,13 +31,13 @@ use humhub\modules\content\models\Content;
  * @package humhub.modules_core.wall
  * @author luke
  */
-class ContentContainerStream extends Stream
-{
+class ContentContainerStream extends Stream {
 
     public $contentContainer;
+    public $layout;
 
-    public function init()
-    {
+    public function init() {
+
         parent::init();
 
         // Get Content Container by Param
@@ -53,7 +53,7 @@ class ContentContainerStream extends Stream
          * Limit to public posts when no member
          */
         if (!$this->contentContainer->canAccessPrivateContent($this->user)) {
-            if(!Yii::$app->user->isGuest) {
+            if (!Yii::$app->user->isGuest) {
                 $this->activeQuery->andWhere("content.visibility=" . Content::VISIBILITY_PUBLIC . " OR content.created_by = :userId", [':userId' => $this->user->id]);
             } else {
                 $this->activeQuery->andWhere("content.visibility=" . Content::VISIBILITY_PUBLIC);
@@ -74,6 +74,64 @@ class ContentContainerStream extends Stream
                 $this->activeQuery->andWhere("(content.sticked != 1 OR content.sticked is NULL)");
             }
         }
+    }
+
+    public function run() {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+        $wallEntries = $this->getWallEntries();
+
+        $output = "";
+        $generatedWallEntryIds = [];
+        $lastEntryId = "";
+        $i = 0;
+        foreach ($wallEntries as $wallEntry) {
+            $i++;
+            $underlyingObject = $wallEntry->content->getPolymorphicRelation();
+
+            if ($underlyingObject === null) {
+                throw new Exception('Could not get contents underlying object!');
+            }
+
+            $underlyingObject->populateRelation('content', $wallEntry->content);
+
+            if ($this->layout == "timeline") {
+                if ($i % 2 == 1) {
+                    $output.="<li class=\"timeline-inverted\" > "
+                            . "   <div class=\"timeline-badge\">"
+                            . "<a><i class=\"fa fa-circle invert\" ></i></a>
+                </div>";
+                } else {
+                    $output.="<li>"
+                            . "   <div class=\"timeline-badge\">"
+                            . "<a><i class=\"fa fa-circle invert\" ></i></a>
+                </div>";
+                }
+            }
+$output.=" <div class=\"timeline-panel\">";
+
+            $output .= $this->controller->renderAjax('@humhub/modules/content/views/layouts/wallEntry', [
+                'entry' => $wallEntry,
+                'user' => $underlyingObject->content->user,
+                'mode' => $this->mode,
+                'object' => $underlyingObject,
+                'content' => $underlyingObject->getWallOut()
+                    ], true);
+            $output.="</div>";
+            if ($this->layout == "timeline")
+                $output.="</li>";
+
+
+            $generatedWallEntryIds[] = $wallEntry->id;
+            $lastEntryId = $wallEntry->id;
+        }
+
+        return [
+            'output' => $output,
+            'lastEntryId' => $lastEntryId,
+            'counter' => count($wallEntries),
+            'entryIds' => $generatedWallEntryIds
+        ];
     }
 
 }
