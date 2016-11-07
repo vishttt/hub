@@ -1,1 +1,0 @@
-<?php echo $this->render('@humhub/modules/space/views/create/modules', ['space' => $space, 'availableModules' => $availableModules]); ?>

@@ -1,1 +1,0 @@
-<?php echo $this->render('@humhub/modules/space/views/create/invite', ['spaceId' => $space->id, 'model' => $model, 'space' => $space]); ?>
