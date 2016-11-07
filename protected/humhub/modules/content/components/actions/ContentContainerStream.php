@@ -125,6 +125,8 @@ $output.=" <div class=\"timeline-panel\">";
             $generatedWallEntryIds[] = $wallEntry->id;
             $lastEntryId = $wallEntry->id;
         }
+        
+          $output .= '<li class="clearfix no-float"></li>';
 
         return [
             'output' => $output,

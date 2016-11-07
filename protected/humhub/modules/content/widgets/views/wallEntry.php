@@ -78,7 +78,7 @@ $container = $object->content->container;
 
                     </small>
                 </h4>
-                <h5><?php echo Html::encode($user->profile->title); ?></h5>
+                <h5><?php //echo Html::encode($user->profile->title); ?></h5>
 
             </div>
             <hr/>
