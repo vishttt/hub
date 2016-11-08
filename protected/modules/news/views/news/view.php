@@ -4,6 +4,29 @@ use yii\helpers\Html;
 \humhub\modules\news\Assets::register($this);
 
 ?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 layout-content-container">
+            <?php
+           
+                echo \humhub\modules\news\widgets\Form::widget(['contentContainer' => \Yii::$app->user->getIdentity()]);
+           
+            ?>
+
+            <?php
+            echo \humhub\modules\content\widgets\Stream::widget([
+                'streamAction' => '//news/news/stream',
+                'showFilters' => false,
+                'messageStreamEmpty' => Yii::t('NewsModule.views_dashboard_index', '<b>Your dashboard is empty!</b><br>Post something on your profile or join some spaces!'),
+            ]);
+            ?>
+        </div>
+        <div class="col-md-4 layout-sidebar-container">
+         
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row">
         <h2>Super Simple Bootstrap Responsive Timeline</h2>

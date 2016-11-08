@@ -34,7 +34,7 @@ use humhub\modules\search\interfaces\Searchable;
 class NewsPost extends ContentActiveRecord implements Searchable
 {
 
-        public $wallEntryClass = "humhub\modules\post\widgets\WallEntry";
+        public $wallEntryClass = "humhub\modules\news\widgets\WallEntry";
 
     /**
      * @return string the associated database table name

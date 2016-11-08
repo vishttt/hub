@@ -64,5 +64,17 @@ class DashboardController extends Controller
             ));
         }
     }
+    
+    public function actionHome(){
+        
+            $query = \humhub\modules\space\models\Space::find();
+            $query->andWhere(['space.status' => 1]);
+        
+       $query->offset(0)->limit(2);
+
+      
+               
+       return $this->render('home',array('spaces' => $query->all()));
+    }
 
 }

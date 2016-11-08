@@ -11,7 +11,6 @@ use humhub\modules\news\models\Category;
 use humhub\modules\news\models\NewsPost;
 use humhub\modules\news\models\forms\CreateNews;
 use \humhub\modules\post\models\Post;
-
 use humhub\modules\User\models\User;
 use humhub\modules\user\widgets\UserPicker;
 
@@ -27,6 +26,17 @@ class NewsController extends Controller {
         return [
             'acl' => [
                 'class' => \humhub\components\behaviors\AccessControl::className(),
+            ]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function actions() {
+        return [
+            'stream' => [
+                'class' => \humhub\modules\news\components\actions\DashboardStream::className()
             ]
         ];
     }
@@ -59,8 +69,8 @@ class NewsController extends Controller {
             $news->title = $model->title;
             $news->content = $model->content;
             $news->created_by = Yii::$app->user->id;
-            $news->views=0;
-            
+            $news->views = 0;
+
             $news->save();
 
             File::attachPrecreated($news, Yii::$app->request->post('fileUploaderHiddenGuidField'));
@@ -68,38 +78,30 @@ class NewsController extends Controller {
 
             return $this->htmlRedirect(['index', 'id' => $news->id]);
         }
-          $categories = \yii\helpers\ArrayHelper::map(Category::find()->all(), 'id', 'name');
+        $categories = \yii\helpers\ArrayHelper::map(Category::find()->all(), 'id', 'name');
 
-        return $this->renderAjax('create', array('model' => $model,'categories'=>$categories));
+        return $this->renderAjax('create', array('model' => $model, 'categories' => $categories));
     }
 
-    
-    
-    
-     public function actionPost()
-    {
+    public function actionPost() {
         // Check createPost Permission
-     
+
 
         $post = new NewsPost();
-        $post->content = \Yii::$app->request->post('content');
-
-        
-         
-         
+        $post->message = \Yii::$app->request->post('message');
 
         return \humhub\modules\content\widgets\WallCreateContentForm::create($post, $this->contentContainer);
     }
-    
+
     /*
      * view
      */
-    
-    public function actionView(){
-                return $this->render('/news/view');
 
+    public function actionView() {
+
+        return $this->render('/news/view');
     }
-    
+
     /**
      * Overview of all messages
      * Used by MailNotificationWidget to display all recent messages
@@ -293,8 +295,6 @@ class NewsController extends Controller {
         }
         return $results;
     }
-
-   
 
     /**
      * Leave Message / Conversation

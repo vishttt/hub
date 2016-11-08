@@ -60,6 +60,7 @@ class WallEntry extends Widget
      */
     public static function widget($config = [])
     {
+        
         ob_start();
         ob_implicit_flush(false);
         try {
