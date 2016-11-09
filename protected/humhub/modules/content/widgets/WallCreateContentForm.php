@@ -76,16 +76,16 @@ class WallCreateContentForm extends Widget
     public function run()
     {
         $defaultVisibility = Content::VISIBILITY_PUBLIC;
-        if ($this->contentContainer instanceof Space) {
-            $defaultVisibility = $this->contentContainer->getDefaultContentVisibility();
-        }
-
+//        if ($this->contentContainer instanceof Space) {
+//            $defaultVisibility = $this->contentContainer->getDefaultContentVisibility();
+//        }
+//
         $canSwitchVisibility = false;
-        if ($this->contentContainer->permissionManager->can(new \humhub\modules\content\permissions\CreatePublicContent())) {
-            $canSwitchVisibility = true;
-        } else {
-            $defaultVisibility = Content::VISIBILITY_PRIVATE;
-        }
+//        if ($this->contentContainer->permissionManager->can(new \humhub\modules\content\permissions\CreatePublicContent())) {
+//            $canSwitchVisibility = true;
+//        } else {
+//            $defaultVisibility = Content::VISIBILITY_PRIVATE;
+//        }
 
         return $this->render('@humhub/modules/content/widgets/views/wallCreateContentForm', array(
                     'form' => $this->renderForm(),
@@ -114,10 +114,12 @@ class WallCreateContentForm extends Widget
     {
         Yii::$app->response->format = 'json';
 
-        $visibility = Yii::$app->request->post('visibility');
-        if ($visibility == Content::VISIBILITY_PUBLIC && !$contentContainer->permissionManager->can(new \humhub\modules\content\permissions\CreatePublicContent())) {
-            $visibility = Content::VISIBILITY_PRIVATE;
-        }
+//        $visibility = Yii::$app->request->post('visibility');
+//        if ($visibility == Content::VISIBILITY_PUBLIC && !$contentContainer->permissionManager->can(new \humhub\modules\content\permissions\CreatePublicContent())) {
+//            $visibility = Content::VISIBILITY_PRIVATE;
+//        }
+        
+         $visibility = Content::VISIBILITY_PUBLIC;
         $record->content->visibility = $visibility;
         
         $record->content->container = $contentContainer;

@@ -18,6 +18,6 @@
 <?php endif; ?>
 
 <?php if ($object->content->isPublic()) : ?>
-    <span class="label label-success"><?php echo Yii::t('ContentModule.widgets_views_label', 'Public'); ?></span>
+    <!--<span class="label label-success"><?php echo Yii::t('ContentModule.widgets_views_label', 'Public'); ?></span>-->
 <?php endif; ?>
 
