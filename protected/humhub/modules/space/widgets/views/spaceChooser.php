@@ -42,7 +42,6 @@ $this->registerJsVar('scSpaceListUrl', Url::to(['/space/list', 'ajax' => 1]));
                         class="fa fa-times-circle"></i></div>
             </form>
         </li>
-
         <li class="divider"></li>
         <li>
             <ul class="media-list notLoaded" id="space-menu-spaces">
