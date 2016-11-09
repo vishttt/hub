@@ -99,7 +99,7 @@ class TimeAgo extends \yii\base\Widget
             return call_user_func(Yii::$app->params['formatter']['timeAgoFullDateCallBack'], $this->timestamp);
         }
 
-        return Yii::$app->formatter->asDate($this->timestamp, 'medium') . ' - ' . Yii::$app->formatter->asTime($this->timestamp, 'short');
+        return Yii::$app->formatter->asDate($this->timestamp, 'medium') . ' ' . Yii::$app->formatter->asTime($this->timestamp, 'short');
     }
 
 }

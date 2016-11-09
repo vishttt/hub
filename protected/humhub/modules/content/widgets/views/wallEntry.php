@@ -24,36 +24,43 @@ $container = $object->content->container;
                 </li>
             </ul>
             <!-- end: show wall entry options -->
-
-            <a href="<?php echo $user->getUrl(); ?>" class="pull-left">
-                <img class="media-object img-rounded user-image user-<?php echo $user->guid; ?>" alt="40x40"
-                     data-src="holder.js/40x40" style="width: 40px; height: 40px;"
-                     src="<?php echo $user->getProfileImage()->getUrl(); ?>"
-                     width="40" height="40"/>
-            </a>
-
-            <!-- Show space image, if you are outside from a space -->
-            <?php if (!Yii::$app->controller instanceof ContentContainerController && $object->content->container instanceof Space): ?>
-                <?php echo \humhub\modules\space\widgets\Image::widget([
+            <?php if (!Yii::$app->controller instanceof ContentContainerController && $object->content->container instanceof Space) { ?>
+                <?php
+                echo \humhub\modules\space\widgets\Image::widget([
                     'space' => $object->content->container,
-                    'width' => 20,
+                    'width' => 40,
                     'htmlOptions' => [
-                        'class' => 'img-space',
+                        'class' => 'media-object img-rounded user-image',
                     ],
                     'link' => 'true',
                     'linkOptions' => [
                         'class' => 'pull-left',
                     ],
-                ]); ?>
+                ]);
+                ?>
 
-            <?php endif; ?>
+            <?php } else { ?> 
+                <a href="<?php echo $user->getUrl(); ?>" class="pull-left">
+                    <img class="media-object img-rounded user-image user-<?php echo $user->guid; ?>" alt="40x40"
+                         data-src="holder.js/40x40" style="width: 40px; height: 40px;"
+                         src="<?php echo $user->getProfileImage()->getUrl(); ?>"
+                         width="40" height="40"/>
+                </a>
+            <?php } ?>
+            <!-- Show space image, if you are outside from a space -->
+
 
 
             <div class="media-body">
 
                 <!-- show username with link and creation time-->
-                <h4 class="media-heading"><a
-                        href="<?php echo $user->getUrl(); ?>"><?php echo Html::encode($user->displayName); ?></a>
+                <h4 class="media-heading">
+                        <?php if (!Yii::$app->controller instanceof ContentContainerController && $container instanceof Space) { ?>
+                            <strong><a
+                                href="<?php echo $container->getUrl(); ?>"><?php echo Html::encode($container->name); ?></a></strong>
+                        <?php } else { ?>
+                        <a href="<?php echo $user->getUrl(); ?>"><?php echo Html::encode($user->displayName); ?></a>
+                        <?php } ?>
                     <small>
 
                         <!-- show profile name -->
@@ -66,19 +73,16 @@ $container = $object->content->container;
 
                         <?php if ($object->content->created_at !== $object->content->updated_at && $object->content->updated_at != ''): ?>
                             (<?php echo Yii::t('ContentModule.views_wallLayout', 'Updated :timeago', array(':timeago' => \humhub\widgets\TimeAgo::widget(['timestamp' => $object->content->updated_at]))); ?>)
-                        <?php endif; ?>
+<?php endif; ?>
 
                         <!-- show space name -->
-                        <?php if (!Yii::$app->controller instanceof ContentContainerController && $container instanceof Space): ?>
-                            <?php echo Yii::t('ContentModule.views_wallLayout', 'in'); ?> <strong><a
-                                    href="<?php echo $container->getUrl(); ?>"><?php echo Html::encode($container->name); ?></a></strong>&nbsp;
-                        <?php endif; ?>
 
-                        <?php echo \humhub\modules\content\widgets\WallEntryLabels::widget(['object' => $object]); ?>
+
+<?php echo \humhub\modules\content\widgets\WallEntryLabels::widget(['object' => $object]); ?>
 
                     </small>
                 </h4>
-                <h5><?php //echo Html::encode($user->profile->title); ?></h5>
+                <h5><?php //echo Html::encode($user->profile->title);  ?></h5>
 
             </div>
             <hr/>
@@ -86,11 +90,11 @@ $container = $object->content->container;
             <div class="content" id="wall_content_<?php echo $object->getUniqueId(); ?>">
                 <?php if (!$object instanceof \humhub\modules\post\models\Post) : ?>
                     <span class="label label-default pull-right"><?php echo $object->getContentName(); ?></span>
-                <?php endif; ?>
-                <?php echo $content; ?>
+<?php endif; ?>
+            <?php echo $content; ?>
             </div>
 
-            <?php echo \humhub\modules\content\widgets\WallEntryAddons::widget(['object' => $object]); ?>
+<?php echo \humhub\modules\content\widgets\WallEntryAddons::widget(['object' => $object]); ?>
         </div>
 
 

@@ -1,0 +1,19 @@
+a:2:{i:0;s:876:"<a href="#" onClick="activityShowItem(15); return false;">    <li class="activity-entry">
+        <div class="media">
+                            <!-- Show user image -->
+                <img class="media-object img-rounded pull-left" data-src="holder.js/32x32" alt="32x32"
+                     style="width: 32px; height: 32px;"
+                     src="/humhub/uploads/profile_image/84eccb4a-da0e-409b-8fe4-e3892700f0b0.jpg?m=1477642354">
+            
+            <!-- Show space image, if you are outside from a space -->
+            
+            <div class="media-body text-break">
+
+                <!-- Show content -->
+                <strong>lam le</strong> created a new post "abcder".<br/>
+
+                <!-- show time -->
+                <span class="time"><span title="31-10-2016 - 15:41">31-10-2016</span></span>            </div>
+        </div>
+    </li>
+</a>";i:1;N;}

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-var_dump($spaces);
+use yii\helpers\Url;
 ?>
 <div class="container">
     <div class="row">
@@ -23,7 +23,7 @@ var_dump($spaces);
                     <div class="panel-body">
                         <div class="blog-post-meta">
                             <span class="label label-light label-info">Trends</span>
-                            <p class="blog-post-date pull-right">February 16, 2016</p>
+                            <p class="blog-post-date pull-right"> <?php echo \humhub\widgets\TimeAgo::widget(['timestamp' => $s->created_at]); ?></p>
                         </div>
                         <div class="blog-post-content">
                             <a href="<?php echo $s->getUrl(); ?>">
@@ -31,6 +31,7 @@ var_dump($spaces);
                             </a>
                             <p><?php echo $s->description; ?></p>
                             <a href="<?php echo $s->getUrl(); ?>" class="btn btn-info">Read more</a>
+                            <?php echo \humhub\modules\space\widgets\FollowButton::widget(['space'=>$s]);?>
                             <div id="" class="pull-right">
                                 <a onclick="
                                         var width = 575,
@@ -90,9 +91,8 @@ var_dump($spaces);
         <div class="col-md-3">
             <section class="blog-post">
                 <div class="panel panel-default">
-                    <?php
-                    if (Yii::$app->user->id) {
-                        echo Html::a("new", ['/news/news/create', 'ajax' => 1, 'userGuid' => Yii::$app->user->id], array('class' => 'btn btn-default', 'data-target' => '#globalModal'));
+                    <?php if ($canCreateSpace){
+                    echo Html::a(Yii::t('SpaceModule.widgets_views_spaceChooser', 'Create new space'), Url::to(['/space/create/create']), array('class' => 'btn btn-info col-md-12', 'data-target' => '#globalModal'));
                     }
                     ?>
                 </div>

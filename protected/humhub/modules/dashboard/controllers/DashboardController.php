@@ -11,12 +11,12 @@ namespace humhub\modules\dashboard\controllers;
 use Yii;
 use humhub\components\Controller;
 use humhub\models\Setting;
+use humhub\modules\space\permissions\CreatePrivateSpace;
+use humhub\modules\space\permissions\CreatePublicSpace;
 
-class DashboardController extends Controller
-{
+class DashboardController extends Controller {
 
-    public function init()
-    {
+    public function init() {
         $this->appendPageTitle(\Yii::t('DashboardModule.base', 'Dashboard'));
         return parent::init();
     }
@@ -24,8 +24,7 @@ class DashboardController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'acl' => [
                 'class' => \humhub\components\behaviors\AccessControl::className(),
@@ -40,8 +39,7 @@ class DashboardController extends Controller
     /**
      * @inheritdoc
      */
-    public function actions()
-    {
+    public function actions() {
         return [
             'stream' => [
                 'class' => \humhub\modules\dashboard\components\actions\DashboardStream::className()
@@ -54,8 +52,7 @@ class DashboardController extends Controller
      *
      * Show recent wall entries for this user
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         if (Yii::$app->user->isGuest) {
             return $this->render('index_guest', array());
         } else {
@@ -64,17 +61,21 @@ class DashboardController extends Controller
             ));
         }
     }
-    
-    public function actionHome(){
-        
-            $query = \humhub\modules\space\models\Space::find();
-            $query->andWhere(['space.status' => 1]);
-        
-       $query->offset(0)->limit(2);
 
-      
-               
-       return $this->render('home',array('spaces' => $query->all()));
+    public function actionHome() {
+
+        $query = \humhub\modules\space\models\Space::find();
+        $query->andWhere(['space.status' => 1]);
+
+        $query->offset(0)->limit(10);
+
+
+
+        return $this->render('home', array('spaces' => $query->all(), 'canCreateSpace' => $this->canCreateSpace()));
+    }
+
+    protected function canCreateSpace() {
+        return (Yii::$app->user->permissionmanager->can(new CreatePublicSpace) || Yii::$app->user->permissionmanager->can(new CreatePrivateSpace()));
     }
 
 }

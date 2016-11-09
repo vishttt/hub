@@ -17,6 +17,7 @@ use yii\helpers\Url;
              <?= humhub\modules\space\widgets\SpaceNameColorInput::widget(['form' => $form, 'model' => $model])?>
 
             <?php echo $form->field($model, 'description')->textarea(['placeholder' => Yii::t('SpaceModule.views_create_create', 'space description'), 'rows' => '3']); ?>
+        <?php echo $form->field($model, 'tags')->textInput(['maxlength' => 200]); ?>
 
             <a data-toggle="collapse" id="access-settings-link" href="#collapse-access-settings"
                style="font-size: 11px;"><i

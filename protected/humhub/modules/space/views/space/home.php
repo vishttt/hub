@@ -11,7 +11,7 @@ if ($canCreatePosts) {
 }
 ?>
 <?php
-echo \humhub\modules\content\widgets\StreamTimeline::widget([
+echo \humhub\modules\content\widgets\Stream::widget([
     'contentContainer' => $space,
     'streamAction' => '/space/space/stream',
     'messageStreamEmpty' => $emptyMessage,
