@@ -86,7 +86,7 @@ class DashboardController extends Controller {
 
     protected function getStreamUrl() {
         $params = array(
-            'limit' => '10',
+            'limit' => '1',
             'from' => '-from-',
             'mode' => \humhub\modules\content\components\actions\Stream::MODE_ACTIVITY
         );

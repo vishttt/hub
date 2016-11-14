@@ -17,7 +17,7 @@ $this->registerJsVar('activityStreamUrl', $streamUrl);
 <div class="container">
     <div class="row">
 
-        <div class="dp_calendar" id="calendar"></div>
+        <div class="dp_calendar" id="dpcalendar"></div>
         <div id="activityStream">
             <div id="activityEmpty" style="display:none">
                 <div
@@ -35,14 +35,23 @@ $this->registerJsVar('activityStreamUrl', $streamUrl);
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        var cur_date=new Date();
-        $("#calendar").dp_calendar({
+
+        var activityLastLoadedEntryId = "";
+
+        // save if the last entries are already loaded
+        var activityLastEntryReached = false;
+
+        // listen for scrolling event yes or no
+        var scrolling = true;
+        var cur_date = new Date();
+        $("#dpcalendar").dp_calendar({
             onChangeDay: function (date_selected) {
 
                 if (cur_date !== date_selected) {
-                console.log(cur_date);
-
-                    $('#activityContents').html('');
+                    console.log(cur_date);
+                    activityLastLoadedEntryId = "";
+                    activityLastEntryReached = false;
+                      $('#activityContents li').not('#activityLoader').remove();
                     loadMoreActivities();
                 }
                 cur_date = date_selected;
@@ -53,13 +62,6 @@ $this->registerJsVar('activityStreamUrl', $streamUrl);
         );
 
 
-        var activityLastLoadedEntryId = "";
-
-        // save if the last entries are already loaded
-        var activityLastEntryReached = false;
-
-        // listen for scrolling event yes or no
-        var scrolling = true;
 
         // hide loader
         $("#activityLoader").hide();
