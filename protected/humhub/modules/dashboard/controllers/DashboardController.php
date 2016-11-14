@@ -78,4 +78,22 @@ class DashboardController extends Controller {
         return (Yii::$app->user->permissionmanager->can(new CreatePublicSpace) || Yii::$app->user->permissionmanager->can(new CreatePrivateSpace()));
     }
 
+    public function actionAchieve() {
+
+        $streamUrl = $this->getStreamUrl();
+        return $this->render('achieve', array('streamUrl' => $streamUrl));
+    }
+
+    protected function getStreamUrl() {
+        $params = array(
+            'limit' => '10',
+            'from' => '-from-',
+            'mode' => \humhub\modules\content\components\actions\Stream::MODE_ACTIVITY
+        );
+
+
+
+        return \yii\helpers\Url::to(array_merge(['//dashboard/dashboard/stream'], $params));
+    }
+
 }
