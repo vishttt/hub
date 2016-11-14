@@ -112,11 +112,11 @@
 
 			
 			curr_day = date_selected.getDay();
-			curr_day_name = $.datepicker.regional[""].dayNames[curr_day];
+			curr_day_name = $.fn.dp_calendar.regional[""].dayNames[curr_day];
 			curr_date = date_selected.getDate();
 			curr_month = date_selected.getMonth();
-			curr_month_name = $.datepicker.regional[""].monthNames[curr_month];
-			curr_month_name_short = $.datepicker.regional[""].monthNamesShort[curr_month];
+			curr_month_name = $.fn.dp_calendar.regional[""].monthNames[curr_month];
+			curr_month_name_short = $.fn.dp_calendar.regional[""].monthNamesShort[curr_month];
 			curr_year = date_selected.getFullYear();
 			
 			//Set defaults options
@@ -221,7 +221,7 @@
 			
 			/* Days and Months Labels*/
 			$(day_name).html("");
-			$(day_name).append("<h1>" + curr_day_name + "&nbsp;<span class='span_day'>" + dp_str_pad(curr_date, 2, "0", "STR_PAD_LEFT") + "</span>&nbsp;<span class='span_month'>" + curr_month_name_short + "</span></h1>");		
+			$(day_name).append("<h1>" + curr_day_name + "&nbsp;<span class='span_day'>" + dp_str_pad(curr_date, 2, "0", "STR_PAD_LEFT") + "</span><span class='span_month'>/" + curr_month_name_short + "</span></h1>");		
 			   
 			$dp.datepicker("setDate", date_selected);
 			$(toggleDP).html(curr_month_name + " " + curr_year);
@@ -367,17 +367,17 @@
 	$.fn.dp_calendar.curr_year = "";
 	$.fn.dp_calendar.regional = [];
 	$.fn.dp_calendar.regional[''] = {
-		closeText: 'Done',
-		prevText: 'Prev',
-		nextText: 'Next',
+		closeText: 'Đóng',
+		prevText: 'Sau',
+		nextText: 'Tiếp',
 		currentText: 'Today',
-		monthNames: ['January','February','March','April','May','June',
-		'July','August','September','October','November','December'],
-		monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-		'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-		dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-		dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-		dayNamesMin: ['Su','Mo','Tu','We','Th','Fr','Sa'],
+		monthNames: ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6',
+		'Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'],
+		monthNamesShort: ['1', '2', '3', '4', '5', '6',
+		'7', '8', '9', '10', '11', '12'],
+		dayNames: ['Chủ nhật', 'Thứ 2', 'Thứ 3', 'Thứ 4', 'Thứ 5', 'Thứ 6', 'Thứ 7'],
+		dayNamesShort: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
+		dayNamesMin: ['CN', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7'],
 		DP_LBL_EVENTS: 'Events',
 		DP_LBL_NO_ROWS: 'No results were found in this date.',
 		DP_LBL_SORT_BY: 'SORT BY:',
