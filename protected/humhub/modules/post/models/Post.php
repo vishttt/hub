@@ -24,8 +24,7 @@ use humhub\modules\search\interfaces\Searchable;
  * @property string $updated_at
  * @property integer $updated_by
  */
-class Post extends ContentActiveRecord implements Searchable
-{
+class Post extends ContentActiveRecord implements Searchable {
 
     /**
      * @inheritdoc
@@ -35,16 +34,14 @@ class Post extends ContentActiveRecord implements Searchable
     /**
      * @inheritdoc
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'post';
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['message'], 'required'],
             [['message'], 'string'],
@@ -57,8 +54,7 @@ class Post extends ContentActiveRecord implements Searchable
     /**
      * @inheritdoc
      */
-    public function beforeSave($insert)
-    {
+    public function beforeSave($insert) {
         // Prebuild Previews for URLs in Message
         \humhub\models\UrlOembed::preload($this->message);
 
@@ -74,22 +70,35 @@ class Post extends ContentActiveRecord implements Searchable
     /**
      * @inheritdoc
      */
-    public function afterSave($insert, $changedAttributes)
-    {
+    public function afterSave($insert, $changedAttributes) {
 
         parent::afterSave($insert, $changedAttributes);
 
         // Handle mentioned users
         \humhub\modules\user\models\Mentioning::parse($this, $this->message);
 
+
+     //   self::mentionWall($this, $this->message);
+
         return true;
+    }
+
+    public static function mentionWall($record, $message) {
+        preg_replace_callback('@\@\-([us])([\w\-]*?)($|[\.,:;\'"!\?\s])@', function($hit) use(&$record) {
+            if ($hit[1] == 's') {
+                $space = \humhub\modules\space\models\Space::findOne(['guid' => $hit[2]]);
+
+                if ($space !== null) {
+                    $record->content->addToWall($space->wall_id);
+                }
+            }
+        }, $message);
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'message' => 'Message',
@@ -104,24 +113,21 @@ class Post extends ContentActiveRecord implements Searchable
     /**
      * @inheritdoc
      */
-    public function getContentName()
-    {
+    public function getContentName() {
         return Yii::t('PostModule.models_Post', 'post');
     }
 
     /**
      * @inheritdoc
      */
-    public function getContentDescription()
-    {
+    public function getContentDescription() {
         return $this->message;
     }
 
     /**
      * @inheritdoc
      */
-    public function getSearchAttributes()
-    {
+    public function getSearchAttributes() {
         $attributes = array(
             'message' => $this->message,
             'url' => $this->url,

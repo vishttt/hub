@@ -126,15 +126,15 @@ class WallCreateContentForm extends Widget
 
         // Handle Notify User Features of ContentFormWidget
         // ToDo: Check permissions of user guids
-        $userGuids = Yii::$app->request->post('notifyUserInput');
-        if ($userGuids != "") {
-            foreach (explode(",", $userGuids) as $guid) {
-                $user = User::findOne(['guid' => trim($guid)]);
-                if ($user) {
-                    $record->content->notifyUsersOfNewContent[] = $user;
-                }
-            }
-        }
+//        $userGuids = Yii::$app->request->post('notifyUserInput');
+//        if ($userGuids != "") {
+//            foreach (explode(",", $userGuids) as $guid) {
+//                $user = User::findOne(['guid' => trim($guid)]);
+//                if ($user) {
+//                    $record->content->notifyUsersOfNewContent[] = $user;
+//                }
+//            }
+//        }
 
         // Store List of attached Files to add them after Save
         $record->content->attachFileGuidsAfterSave = Yii::$app->request->post('fileList');

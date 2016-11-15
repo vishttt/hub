@@ -61,7 +61,10 @@ $container = $object->content->container;
                         <?php } else { ?>
                         <a href="<?php echo $user->getUrl(); ?>"><?php echo Html::encode($user->displayName); ?></a>
                         <?php } ?>
-                    <small>
+        
+                </h4>
+                <h5><?php //echo Html::encode($user->profile->title);  ?>
+                            <small>
 
                         <!-- show profile name -->
                         <?php if (!Yii::$app->controller instanceof ContentContainerController && $container instanceof User && $container->id != $user->id): ?>
@@ -81,8 +84,7 @@ $container = $object->content->container;
 <?php echo \humhub\modules\content\widgets\WallEntryLabels::widget(['object' => $object]); ?>
 
                     </small>
-                </h4>
-                <h5><?php //echo Html::encode($user->profile->title);  ?></h5>
+                </h5>
 
             </div>
             <hr/>

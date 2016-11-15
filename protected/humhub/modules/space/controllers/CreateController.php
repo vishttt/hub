@@ -59,7 +59,9 @@ class CreateController extends Controller
         $model = $this->createSpaceModel();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->actionModules($model->id);
+            return $this->htmlRedirect($model->getUrl());
+
+        //    return $this->actionModules($model->id);
         }
 
         $visibilityOptions = [];
@@ -93,7 +95,6 @@ class CreateController extends Controller
     public function actionModules($space_id)
     {
         $space = Space::find()->where(['id' => $space_id])->one();
-
         if (count($space->getAvailableModules()) == 0) {
             return $this->actionInvite($space);
         } else {

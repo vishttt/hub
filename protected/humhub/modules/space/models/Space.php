@@ -91,6 +91,7 @@ class Space extends ContentContainerActiveRecord implements \humhub\modules\sear
         if (Yii::$app->getModule('space')->useUniqueSpaceNames) {
             $rules[] = [['name'], 'unique', 'targetClass' => self::className()];
         }
+         $rules[] = [['tags'], 'unique', 'targetClass' => self::className()];
         return $rules;
     }
 
@@ -102,7 +103,7 @@ class Space extends ContentContainerActiveRecord implements \humhub\modules\sear
         $scenarios = parent::scenarios();
 
         $scenarios['edit'] = ['name', 'color', 'description', 'tags', 'join_policy', 'visibility', 'default_content_visibility', 'url'];
-        $scenarios['create'] = ['name', 'color', 'description', 'join_policy', 'visibility'];
+        $scenarios['create'] = ['name', 'color', 'description','tags' ,'join_policy', 'visibility'];
 
         return $scenarios;
     }

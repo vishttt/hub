@@ -19,12 +19,12 @@ use yii\helpers\Url;
             <?php echo $form->field($model, 'description')->textarea(['placeholder' => Yii::t('SpaceModule.views_create_create', 'space description'), 'rows' => '3']); ?>
         <?php echo $form->field($model, 'tags')->textInput(['maxlength' => 200]); ?>
 
-            <a data-toggle="collapse" id="access-settings-link" href="#collapse-access-settings"
+<!--            <a data-toggle="collapse" id="access-settings-link" href="#collapse-access-settings"
                style="font-size: 11px;"><i
                     class="fa fa-caret-right"></i> <?php echo Yii::t('SpaceModule.views_create_create', 'Advanced access settings'); ?>
-            </a>
+            </a>-->
 
-            <div id="collapse-access-settings" class="panel-collapse collapse">
+<!--            <div id="collapse-access-settings" class="panel-collapse collapse">
                 <br/>
                 <div class="row">
                     <div class="col-md-6">
@@ -34,7 +34,7 @@ use yii\helpers\Url;
                         <?= $form->field($model, 'visibility')->radioList($visibilityOptions); ?>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
 
         <div class="modal-footer">

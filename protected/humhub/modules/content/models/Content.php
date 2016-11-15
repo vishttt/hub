@@ -427,6 +427,8 @@ class Content extends \humhub\components\ActiveRecord
             $contentContainer = $this->getContainer();
             $wallId = $contentContainer->wall_id;
         }
+        
+        
 
         $wallEntry = new WallEntry();
         $wallEntry->wall_id = $wallId;

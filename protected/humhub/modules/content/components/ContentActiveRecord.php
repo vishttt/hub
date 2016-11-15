@@ -194,6 +194,11 @@ class ContentActiveRecord extends ActiveRecord implements \humhub\modules\conten
         if ($insert && $this->autoAddToWall && $this->wallEntryClass != "") {
             $this->content->addToWall();
         }
+        
+        
+        
+        
+        
     }
 
     /**
